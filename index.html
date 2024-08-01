@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do List</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="website icon" type="png" href="" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-mart/css/emoji-mart.css" />
+
+  </head>
+  <body>
+
+    <header>
+
+      
+
+    </header>
+
+    <div class="sidebar_container">
+
+      <div class="sidebar" id="Modified-size-sidebar-1">
+        <ul>
+  
+          <div class="itens-container" id="add-task" >
+            <li class="sidebar-bottons">
+              <span class="material-symbols-outlined">
+                sticky_note_2
+              </span>
+              <p class="info-icons">Add Task</p>
+            </li>
+          </div>
+  
+          <div class="itens-container" id="themes" >
+            <li class="sidebar-bottons">
+              <ion-icon class="icons-web" name="color-palette"></ion-icon>
+              
+              <p class="info-icons">Color theme</p>
+            
+          </div>
+  
+  
+        </li>
+        
+  
+        <li class="sidebar-bottons" id="quantity-container">
+  
+  
+    <div class="quantity" ><h2 id="quantity_text">/40</h2></div>
+  
+  
+        </li>
+          
+  
+        </ul>
+      </div>
+
+    </div>
+
+    
+
+
+
+
+    <div id="quantity-checked-container">
+
+      <div id="quantity_div_manipulator">
+
+        <div class="quantity_checked" ><p id="quantity_checked_text"></p></div>
+    
+      </div>
+    
+      <input type="button" value="Delete Tasks" id="delete_checkeds_botton">
+    
+    </div>
+
+
+    <span class="float_menu" id="theme_picker">
+
+      <h2 id="theme_title" >Select a color theme:</h2>
+
+<div class="colorthemes">
+
+  <div class="cores" id="sky-color" data-color="linear-gradient(to right, #9ba8cc 50%, #afbadb 50%)"><p class="colorTitles">BLUE</p></div>
+  <div class="cores" id="pink-color" data-color="linear-gradient(to right, #d3a7c8 50%, #e2b0d6 50%)"><p class="colorTitles">PINK</p></div>
+  <div class="cores" id="banana-color" data-color="linear-gradient(to right, #fffeaf 50%, #fffff1 50%)"><p class="colorTitles" style="font-size: 11px;">YELLOW</p></div>
+  <div class="cores" id="green-color" data-color="linear-gradient(to right, #b5e6b5 50%, #d8fad8 50%)"><p class="colorTitles">GREEN</p></div>
+  <div class="cores" id="peach-color" data-color="linear-gradient(to right, #eb8787 50%, #f0b4b4 50%)"><p class="colorTitles">PEACH</p></div>
+  <div class="cores" id="purple-color" data-color="linear-gradient(to right, #c1a4e3 50%, #ddcaf1 50%)"><p class="colorTitles">PURPLE</p></div>
+
+</div>
+
+      <div class="theme_bottons_div">
+
+        <input class="theme_bottons "type="submit" id="reset" value="Reset">
+        <input class="theme_bottons" type="submit" id="Save_color" value="Save">
+
+      </div>
+
+    </span>
+
+    <div class="tasks_panel">
+
+      <ul class="panelList">
+
+<li class="TitlePanel"><h2>Task</h2></li>
+
+<div class="labeldivs">
+
+  <label class="labels">Title:</label>
+
+</div>
+
+        <li id="titleli">
+
+<input type="text" class="TitleField">
+
+        </li>
+
+        <div class="labeldivs">
+
+        <label class="labels">Description:</label>
+
+        </div>
+
+
+<li id="descriptionli">
+
+  <textarea class="DescriptionField" placeholder="Empty description"></textarea>
+
+</li>
+
+<li id="submit_li">
+
+  <input type="button" value="Delete Task" class="tasks_panel_bottons" id="deletebotton">
+  <input type="button" value="Save changes" class="tasks_panel_bottons" id="submitbotton">
+
+</li>
+
+      </ul>
+    </div>
+
+
+    <div class="container">
+
+
+<div class="tasks-container" id="task-container-only">
+
+<div class="emoji-selection">
+<div class="category-title">
+
+<h3 class="category" id="title1">Trabalho/Produtividade</h3>
+<h3 class="category" id="title2">Emoções</h3>
+<h3 class="category" id="title3">Tempo/Clima</h3>
+<h3 class="category" id="title4">Transporte</h3>
+<h3 class="category" id="title5">Alimentação</h3>
+<h3 class="category" id="title6">Casa</h3>
+<h3 class="category" id="title7">Diversão</h3>
+<h3 class="category" id="title8">Saúde</h3>
+<h3 class="category" id="title9">Outros</h3>
+<h3 class="category" id="title10">Social</h3>
+<h3 class="category" id="title11">Eventos</h3>
+  
+</div>
+
+  <div class="category-section" id="section1" >
+    
+    <span class="emoji">💻</span>
+    <span class="emoji">📃</span>
+    <span class="emoji">📦</span>
+    <span class="emoji">🔨</span>
+    <span class="emoji">💼</span>
+    <span class="emoji">⏰</span>
+</div>
+
+<!-- Emoções -->
+<div class="category-section" id="section2">
+    <span class="emoji">😀</span>
+    <span class="emoji">😐</span>
+    <span class="emoji">😭</span>
+    <span class="emoji">🤣</span>
+    <span class="emoji">😡</span>
+</div>
+
+<!-- Tempo/Clima -->
+<div class="category-section" id="section3">
+    <span class="emoji">🌞</span>
+    <span class="emoji">🌙</span>
+    <span class="emoji">🌧️</span>
+</div>
+
+<!-- Transporte -->
+<div class="category-section" id="section4">
+    <span class="emoji">🚢</span>
+    <span class="emoji">🚲</span>
+    <span class="emoji">🚌</span>
+    <span class="emoji">🚗</span>
+    <span class="emoji">🛫</span>
+</div>
+
+<!-- Alimentação -->
+<div class="category-section" id="section5">
+    <span class="emoji">🍞</span>
+    <span class="emoji">🍳</span>
+    <span class="emoji">🍴</span>
+    <span class="emoji">🥂</span>
+</div>
+
+<!-- Casa -->
+<div class="category-section" id="section6">
+    <span class="emoji">🧹</span>
+    <span class="emoji">🐕</span>
+    <span class="emoji">🐈</span>
+    <span class="emoji">🧽</span>
+    <span class="emoji">🎨</span>
+</div>
+
+<!-- Diversão -->
+<div class="category-section" id="section7">
+    <span class="emoji">🛹</span>
+    <span class="emoji">🎮</span>
+    <span class="emoji">🎉</span>
+    <span class="emoji">⚽</span>
+    <span class="emoji">🎠</span>
+</div>
+
+<!-- Saúde -->
+<div class="category-section" id="section8">
+    <span class="emoji">💊</span>
+    <span class="emoji">🚿</span>
+    <span class="emoji">💤</span>
+    <span class="emoji">🌊</span>
+    <span class="emoji">🌳</span>
+</div>
+
+<!-- Outros -->
+<div class="category-section" id="section9">
+    <span class="emoji">⭐</span>
+    <span class="emoji">💡</span>
+    <span class="emoji">🧳</span>
+    <span class="emoji">📷</span>
+    <span class="emoji">📚</span>
+</div>
+
+<!-- Social -->
+<div class="category-section" id="section10">
+    <span class="emoji">☕</span>
+    <span class="emoji">📞</span>
+    <span class="emoji">💕</span>
+    <span class="emoji">🎵</span>
+    <span class="emoji">🗑️</span>
+</div>
+
+<!-- Eventos -->
+<div class="category-section" id="section11" style="display: flex; flex-direction: column;">
+    <span class="emoji">⛪</span>
+    <span class="emoji">🎁</span>
+    <span class="emoji">🎓</span>
+    <span class="emoji">🎆</span>
+    <span class="emoji">🧺</span>
+    <span class="emoji">🎂</span>
+</div>
+
+
+
+<!-- 📌 -->
+
+
+</div>
+
+</div>
+
+
+
+    </div>
+
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
