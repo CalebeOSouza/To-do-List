@@ -596,13 +596,13 @@ li {
 }
 
 .view_description-container {
-display: flex;
-align-items: center;
-justify-content: center;
-position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
 
-bottom: 10px;
-right: 9px;
+    bottom: 10px;
+    right: 9px;
 
 
 }
@@ -757,6 +757,7 @@ input[type="checkbox"]:checked {
     cursor: pointer;
     transform: scale(1.1);
     transition: .8s;
+
 }
 
 
@@ -777,54 +778,46 @@ input[type="checkbox"]:checked {
 
 
 .title_task-container::-webkit-scrollbar {
-    /* Estilizando a barra de rolagem com uma largura */
+
     width: 10px;
     height: 10px;
 
 }
 
 .title_task-container::-webkit-scrollbar-thumb {
-    /* Estilizando a barra de rolagem com uma cor e arredondando as bordas*/
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
 .title_task-container::-webkit-scrollbar-thumb:hover {
-    /* Estilizando a barra de rolagem ao colocar o mouse sobre, com uma cor mais escura e mudando o cursor*/
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
 body::-webkit-scrollbar {
-    /* Estilizando a barra de rolagem com uma largura */
     width: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
-    /* Estilizando a barra de rolagem com uma cor e arredondando as bordas*/
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
 .DescriptionField::-webkit-scrollbar-thumb:hover {
-    /* Estilizando a barra de rolagem ao colocar o mouse sobre, com uma cor mais escura e mudando o cursor*/
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
 .DescriptionField::-webkit-scrollbar {
-    /* Estilizando a barra de rolagem com uma largura */
     width: 10px;
 }
 
 .DescriptionField::-webkit-scrollbar-thumb {
-    /* Estilizando a barra de rolagem com uma cor e arredondando as bordas*/
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
 .DescriptionField::-webkit-scrollbar-thumb:hover {
-    /* Estilizando a barra de rolagem ao colocar o mouse sobre, com uma cor mais escura e mudando o cursor*/
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.7);
 }

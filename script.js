@@ -383,8 +383,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var quantity_text = document.querySelector("#quantity_text");
     quantityStorage = localStorage.getItem("quantityStorage");
     quantity_text.textContent = quantityStorage + "/40";
-
-
   }
 
   ReloadTasks();
@@ -520,7 +518,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
               console.log("Selected emoji: ", emojiContent);
 
-              // Atualiza o objeto emojis
               emojis[`emoji${selectedTaskIdNumber}`] = emojiContent;
 
               localStorage.setItem("emojisS", JSON.stringify(emojis));
