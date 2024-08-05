@@ -1,19 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var addTask = document.getElementById("add-task");
-  var indiceTask = 0;
-  var noclick = false;
-  var click = 0;
-  var clickemojis = 0;
-  var quantity = 0;
-  var descriptions = JSON.parse(localStorage.getItem("descriptionsS")) || {};
-  var titles = JSON.parse(localStorage.getItem("titlesS")) || {};
-  var emojis = JSON.parse(localStorage.getItem("emojisS")) || {};
-  var variaveis = {};
-  var elements = ["emoji", "title_task", "checkbox"];
-  var OtherElements = ["icons", "content"];
-  var DeletectedTasksQuantity = 0;
-  var DTQbox = 0;
-  var Deletectedtasks = [];
+  const addTask = document.getElementById("add-task");
+  let indiceTask = 0;
+  let noclick = false;
+  let click = 0;
+  let clickemojis = 0;
+  let quantity = 0;
+  let descriptions = JSON.parse(localStorage.getItem("descriptionsS")) || {};
+  let titles = JSON.parse(localStorage.getItem("titlesS")) || {};
+  let emojis = JSON.parse(localStorage.getItem("emojisS")) || {};
+  let variaveis = {};
+  const elements = ["emoji", "title_task", "checkbox"];
+  const OtherElements = ["icons", "content"];
+  let DeletectedTasksQuantity = 0;
+  let DTQbox = 0;
+  let Deletectedtasks = [];
+
+  const colorsbtn = document.querySelectorAll(".cores");
+
+  colorsbtn.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      colorsbtn.forEach(function (all) {
+all.style.border = "none";
+      });
+
+        btn.style.border = "2px solid gray";
+
+    });
+  });
 
   function TasksDescriptions(TaskDescription) {
     if (!descriptions[TaskDescription]) {
@@ -36,11 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function rearrangeDTE() {
     //Descriptions
 
-    var descriptionsKeys = Object.keys(descriptions);
-    var newDescriptions = {};
+    const descriptionsKeys = Object.keys(descriptions);
+    let newDescriptions = {};
 
     descriptionsKeys.forEach((key, index) => {
-      var newKey = `description${index + 1}`;
+      let newKey = `description${index + 1}`;
       newDescriptions[newKey] = descriptions[key];
     });
 
@@ -50,11 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Titles
 
-    var titlesKeys = Object.keys(titles);
-    var newTitles = {};
+    const titlesKeys = Object.keys(titles);
+    let newTitles = {};
 
     titlesKeys.forEach((key, index) => {
-      var newKey = `title${index + 1}`;
+      let newKey = `title${index + 1}`;
       newTitles[newKey] = titles[key];
     });
 
@@ -64,11 +77,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Emojis
 
-    var emojisKeys = Object.keys(emojis);
-    var newEmojis = {};
+    const emojisKeys = Object.keys(emojis);
+    let newEmojis = {};
 
     emojisKeys.forEach((key, index) => {
-      var newKey = `emoji${index + 1}`;
+      let newKey = `emoji${index + 1}`;
       newEmojis[newKey] = emojis[key];
     });
 
@@ -80,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function rearrangeIDS(DeletectedTasksQ, DTArray) {
-    var Alltasks = document.querySelectorAll(".tasks");
+    const Alltasks = document.querySelectorAll(".tasks");
     indiceTask = 0;
 
     console.log("Rearrange Array: " + "[ " + DTArray + " ]");
@@ -93,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //Elements
       elements.forEach(function (element) {
-        var ElementVariable = task.querySelector("." + element + "-container");
+        const ElementVariable = task.querySelector("." + element + "-container");
         if (ElementVariable) {
           ElementVariable.setAttribute("id", element + indiceTask);
         }
@@ -101,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //Other Elements
       OtherElements.forEach(function (Oelement) {
-        var OtherElementVariable = task.querySelector("." + Oelement);
+        const OtherElementVariable = task.querySelector("." + Oelement);
         if (OtherElementVariable) {
           if (Oelement === "icons") {
             OtherElementVariable.setAttribute("id", "icon" + indiceTask);
@@ -115,20 +128,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //Titles,descriptions and emojis
 
-      for (var i = 0; i < DeletectedTasksQ; i++) {
-        var descriptionBoxDelete = "description" + DTArray[i];
+      for (let i = 0; i < DeletectedTasksQ; i++) {
+        let descriptionBoxDelete = "description" + DTArray[i];
         console.log("Deleting description: " + descriptionBoxDelete);
         delete descriptions[descriptionBoxDelete];
 
         localStorage.setItem("descriptionsS", JSON.stringify(descriptions));
 
-        var TitleBoxDelete = "title" + DTArray[i];
+        let TitleBoxDelete = "title" + DTArray[i];
         console.log("Deleting title: " + TitleBoxDelete);
         delete titles[TitleBoxDelete];
 
         localStorage.setItem("titlesS", JSON.stringify(titles));
 
-        var EmojiBoxDelete = "emoji" + DTArray[i];
+        let EmojiBoxDelete = "emoji" + DTArray[i];
         console.log("Deleting emoji: " + EmojiBoxDelete);
         delete emojis[EmojiBoxDelete];
 
@@ -138,26 +151,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateCheckedCount() {
-    var checkboxAll = document.querySelectorAll(".checkbox-container");
-    var checked = 0;
+    const checkboxAll = document.querySelectorAll(".checkbox-container");
+    let checked = 0;
 
     checkboxAll.forEach(function (checkAll) {
       if (checkAll.checked) {
         checked++;
       }
     });
-    var quantity_checked = document.querySelector("#quantity_checked_text");
+    const quantity_checked = document.querySelector("#quantity_checked_text");
     quantity_checked.textContent = "Selected:" + checked;
 
     if (checked === 0) {
       quantity_checked.textContent = "";
 
-      var quantity_container = document.querySelector(
+      const quantity_container = document.querySelector(
         "#quantity-checked-container"
       );
       quantity_container.style.display = "none";
     } else if (checked != 0) {
-      var quantity_container = document.querySelector(
+      const quantity_container = document.querySelector(
         "#quantity-checked-container"
       );
       quantity_container.style.display = "flex";
@@ -165,15 +178,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function DeleteSelectedTasks() {
-    var checkedTasks = [];
-    var checkboxAll = document.querySelectorAll(".checkbox-container");
-    var Alltasks = document.querySelectorAll(".tasks");
+    noclick = true;
+
+    let checkedTasks = [];
+    const checkboxAll = document.querySelectorAll(".checkbox-container");
+    const Alltasks = document.querySelectorAll(".tasks");
     DeletectedTasksQuantity = 0;
 
     checkboxAll.forEach(function (checkAll) {
-      var checkboxID = checkAll.id;
-      var checkboxIDNumber = Number(checkboxID.replace(/^\D+/g, ""));
-      var checkedIDNumber = 0;
+      let checkboxID = checkAll.id;
+      let checkboxIDNumber = Number(checkboxID.replace(/^\D+/g, ""));
+      let checkedIDNumber = 0;
 
       if (checkAll.checked) {
         checkedIDNumber = checkboxIDNumber;
@@ -181,8 +196,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       Alltasks.forEach(function (Tasks) {
-        var taskId = Tasks.id;
-        var taskIdNumber = Number(taskId.replace(/^\D+/g, ""));
+        let taskId = Tasks.id;
+        let taskIdNumber = Number(taskId.replace(/^\D+/g, ""));
 
         if (taskIdNumber === checkedIDNumber) {
           DeletectedTasksQuantity++;
@@ -191,12 +206,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
           Deletectedtasks.push(taskIdNumber);
 
-          var quantity_checked = document.querySelector(
+          const quantity_checked = document.querySelector(
             "#quantity_checked_text"
           );
 
           setTimeout(function () {
-            var quantity_container = document.querySelector(
+            const quantity_container = document.querySelector(
               "#quantity-checked-container"
             );
             quantity_checked.textContent = "";
@@ -210,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
             quantity--;
 
             localStorage.setItem("quantityStorage", quantity);
-            var quantity_text = document.querySelector("#quantity_text");
+            const quantity_text = document.querySelector("#quantity_text");
             quantity_text.textContent = quantity + "/40";
           }
 
@@ -257,10 +272,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     });
+
+    setTimeout(function () {
+      noclick = false;
+      console.log(noclick);
+    }, 1500);
   }
 
-  var themes = document.querySelector("#themes");
-  var picker = document.querySelector("#theme_picker");
+  const themes = document.querySelector("#themes");
+  const picker = document.querySelector("#theme_picker");
   themes.addEventListener("click", function () {
     click++;
     switch (click) {
@@ -274,13 +294,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  var saveThemeBtn = document.querySelector("#Save_color");
-  var resetThemeBtn = document.querySelector("#reset");
-  var cores = document.querySelectorAll(".cores");
+  const saveThemeBtn = document.querySelector("#Save_color");
+  const resetThemeBtn = document.querySelector("#reset");
+  const cores = document.querySelectorAll(".cores");
 
   function newcolors() {
-    var Alltasks = document.querySelectorAll(".tasks");
-    var Alltitles = document.querySelectorAll(".title_task-container");
+    const Alltasks = document.querySelectorAll(".tasks");
+    const Alltitles = document.querySelectorAll(".title_task-container");
 
     Alltasks.forEach(function (allta) {
       allta.style.background = localStorage.getItem("color1S");
@@ -291,13 +311,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  var color1 = "";
-  var color2 = "";
+  let color1 = "";
+  let color2 = "";
 
   cores.forEach(function (core) {
     core.addEventListener("click", function () {
-      var gradient = core.getAttribute("data-color");
-      var colors = gradient.match(/(#[a-f0-9]{6})/g);
+      const gradient = core.getAttribute("data-color");
+      let colors = gradient.match(/(#[a-f0-9]{6})/g);
 
       color1 = colors[0];
       color2 = colors[1];
@@ -311,8 +331,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   resetThemeBtn.addEventListener("click", function () {
-    var Alltasks = document.querySelectorAll(".tasks");
-    var Alltitles = document.querySelectorAll(".title_task-container");
+    const Alltasks = document.querySelectorAll(".tasks");
+    const Alltitles = document.querySelectorAll(".title_task-container");
     color1 = "";
     color2 = "";
 
@@ -325,20 +345,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  var selectedTaskId = null;
+  let selectedTaskId = null;
 
   function createElements(tagName, classes, id) {
-    var element = document.createElement(tagName);
+    const element = document.createElement(tagName);
     element.classList.add(classes);
     element.setAttribute("id", id);
     return element;
   }
 
   function ReloadTasks() {
-    var quantityStorage = parseInt(localStorage.getItem("quantityStorage"), 10);
-    var EmojisStorage = JSON.parse(localStorage.getItem("emojisS")) || {};
-    var TitlesStorage = JSON.parse(localStorage.getItem("titlesS")) || {};
-    var DescriptionsStorage =
+    let quantityStorage = parseInt(localStorage.getItem("quantityStorage"), 10);
+    let EmojisStorage = JSON.parse(localStorage.getItem("emojisS")) || {};
+    let TitlesStorage = JSON.parse(localStorage.getItem("titlesS")) || {};
+    let DescriptionsStorage =
       JSON.parse(localStorage.getItem("descriptionsS")) || {};
 
     console.log(EmojisStorage);
@@ -350,14 +370,14 @@ document.addEventListener("DOMContentLoaded", function () {
       quantity++;
     }
 
-    var Allicons = document.querySelectorAll(".icons");
+    const Allicons = document.querySelectorAll(".icons");
 
     Allicons.forEach(function (icon) {
-      var iconId = icon.id;
-      var iconIdNumber = Number(iconId.replace(/^\D+/g, ""));
+      let iconId = icon.id;
+      let iconIdNumber = Number(iconId.replace(/^\D+/g, ""));
 
       Object.entries(EmojisStorage).forEach(([key, value]) => {
-        var lastCharacter = Number(key.charAt(key.length - 1));
+        let lastCharacter = Number(key.charAt(key.length - 1));
 
         if (iconIdNumber === lastCharacter) {
           icon.innerHTML = value;
@@ -365,14 +385,14 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    var AllTitleContent = document.querySelectorAll(".content");
+    const AllTitleContent = document.querySelectorAll(".content");
 
     AllTitleContent.forEach(function (tinput) {
-      var titleId = tinput.id;
-      var titleIdNumber = Number(titleId.replace(/^\D+/g, ""));
+      let titleId = tinput.id;
+      let titleIdNumber = Number(titleId.replace(/^\D+/g, ""));
 
       Object.entries(TitlesStorage).forEach(([key, value]) => {
-        var lastCharacter = Number(key.charAt(key.length - 1));
+        let lastCharacter = Number(key.charAt(key.length - 1));
 
         if (titleIdNumber === lastCharacter) {
           tinput.innerHTML = value;
@@ -380,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    var quantity_text = document.querySelector("#quantity_text");
+    const quantity_text = document.querySelector("#quantity_text");
     quantityStorage = localStorage.getItem("quantityStorage");
     quantity_text.textContent = quantityStorage + "/40";
   }
@@ -388,18 +408,18 @@ document.addEventListener("DOMContentLoaded", function () {
   ReloadTasks();
 
   function createTaskElements(indice) {
-    var taskContainer = document.createElement("div");
+    const taskContainer = document.createElement("div");
     taskContainer.classList.add("tasks");
 
     taskContainer.setAttribute("id", "task" + indice);
 
-    var TaskManagerContainer = document.querySelector(".tasks-container");
+    const TaskManagerContainer = document.querySelector(".tasks-container");
     TaskManagerContainer.appendChild(taskContainer);
 
     elements.forEach(function (elementName) {
-      var element;
+      let element;
       if (elementName === "checkbox") {
-        var div = document.createElement("div");
+        const div = document.createElement("div");
         div.classList.add("checkbox-div");
         taskContainer.appendChild(div);
 
@@ -413,10 +433,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         element.addEventListener("change", updateCheckedCount);
 
-        var deleteBtn = document.querySelector("#delete_checkeds_botton");
+        const deleteBtn = document.querySelector("#delete_checkeds_botton");
 
         deleteBtn.addEventListener("click", function () {
-          var taskpainel = document.querySelector(".tasks_panel");
+          const taskpainel = document.querySelector(".tasks_panel");
 
           taskpainel.style.animation = "push 2s 1";
 
@@ -427,9 +447,9 @@ document.addEventListener("DOMContentLoaded", function () {
           }, 1000);
 
           setTimeout(function () {
-            var sidebar = document.querySelector(".sidebar");
-            var taskcontainer = document.querySelector(".tasks-container");
-            var sidebarBottons = document.querySelectorAll(".sidebar-bottons");
+            const sidebar = document.querySelector(".sidebar");
+            const taskcontainer = document.querySelector(".tasks-container");
+            const sidebarBottons = document.querySelectorAll(".sidebar-bottons");
 
             taskcontainer.setAttribute("id", "task-container-only");
             sidebar.setAttribute("id", "Modified-size-sidebar-1");
@@ -453,8 +473,8 @@ document.addEventListener("DOMContentLoaded", function () {
       newcolors();
 
       if (elementName == "emoji") {
-        var EmojiDiv = document.querySelector("#emoji" + indice);
-        var emojiIcon = document.createElement("span");
+        const EmojiDiv = document.querySelector("#emoji" + indice);
+        const emojiIcon = document.createElement("span");
         emojiIcon.setAttribute("id", "icon" + indice);
         emojiIcon.classList.add("icons");
         emojiIcon.innerHTML = "📃";
@@ -462,11 +482,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (elementName == "title_task") {
-        var titleDiv = document.querySelector("#title_task" + indice);
-        var divcontent = document.createElement("div");
+        const titleDiv = document.querySelector("#title_task" + indice);
+        const divcontent = document.createElement("div");
         titleDiv.appendChild(divcontent);
 
-        var newTitleH3 = document.createElement("h3");
+        const newTitleH3 = document.createElement("h3");
         newTitleH3.classList.add("content");
         newTitleH3.setAttribute("id", "title" + indice);
         newTitleH3.innerHTML = "Title";
@@ -476,16 +496,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //interações
 
-    var emojiContainer = document.querySelector("#emoji" + indice);
-    var icons = document.querySelector("#icon" + indice);
+    const emojiContainer = document.querySelector("#emoji" + indice);
+    const icons = document.querySelector("#icon" + indice);
 
     icons.addEventListener("click", function () {
       clickemojis++;
-      var emojiSelectionDiv = document.querySelector(".emoji-selection");
+      const emojiSelectionDiv = document.querySelector(".emoji-selection");
 
       switch (clickemojis) {
         case 1:
-          var rect = emojiContainer.getBoundingClientRect();
+          let rect = emojiContainer.getBoundingClientRect();
           emojiSelectionDiv.style.top = rect.bottom + "px";
           emojiSelectionDiv.style.left = rect.left + "px";
           emojiSelectionDiv.style.display = "flex";
@@ -497,18 +517,18 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
       }
 
-      var iconsID = icons.id;
-      var iconsIDNumber = Number(iconsID.replace(/^\D+/g, ""));
+      let iconsID = icons.id;
+      let iconsIDNumber = Number(iconsID.replace(/^\D+/g, ""));
 
-      var emojisElements = document.querySelectorAll(".emoji");
+      const emojisElements = document.querySelectorAll(".emoji");
       emojisElements.forEach(function (emojiElement) {
         emojiElement.addEventListener("click", function () {
-          var emojiContent = emojiElement.textContent;
+          let emojiContent = emojiElement.textContent;
 
-          var iconSelected = document.querySelector("#icon" + iconsIDNumber);
+          let iconSelected = document.querySelector("#icon" + iconsIDNumber);
 
           if (selectedTaskId) {
-            var selectedTaskIdNumber = Number(
+            let selectedTaskIdNumber = Number(
               selectedTaskId.replace(/^\D+/g, "")
             );
             if (iconsIDNumber == selectedTaskIdNumber) {
@@ -526,15 +546,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
 
-      var emojiCategory = document.querySelectorAll(".category");
+      const emojiCategory = document.querySelectorAll(".category");
       emojiCategory.forEach(function (emojiC) {
         emojiC.addEventListener("click", function (event) {
-          var categoryId = event.target.id;
-          var CategoryIdNumber = Number(categoryId.replace(/^\D+/g, ""));
-          var EmojiSection = document.querySelectorAll(".category-section");
+          let categoryId = event.target.id;
+          let CategoryIdNumber = Number(categoryId.replace(/^\D+/g, ""));
+          const EmojiSection = document.querySelectorAll(".category-section");
           EmojiSection.forEach(function (EmojiS) {
-            var SectionId = EmojiS.id;
-            var SectionIdNumber = Number(SectionId.replace(/^\D+/g, ""));
+            let SectionId = EmojiS.id;
+            let SectionIdNumber = Number(SectionId.replace(/^\D+/g, ""));
             if (CategoryIdNumber == SectionIdNumber) {
               EmojiS.style.display = "flex";
               EmojiS.style.flexDirection = "column";
@@ -546,17 +566,17 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    var emojiClicked = false;
-    var checkboxClicked = false;
+    let emojiClicked = false;
+    let checkboxClicked = false;
 
-    var EmjCont = document.querySelectorAll(".emoji-container");
+    const EmjCont = document.querySelectorAll(".emoji-container");
     EmjCont.forEach(function (emj) {
       emj.addEventListener("click", function () {
         emojiClicked = true;
       });
     });
 
-    var CheckCont = document.querySelectorAll(".checkbox-container");
+    const CheckCont = document.querySelectorAll(".checkbox-container");
     CheckCont.forEach(function (check) {
       check.addEventListener("click", function () {
         checkboxClicked = true;
@@ -564,11 +584,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function DashboardDisplay(clickKey) {
-      var taskpainel = document.querySelector(".tasks_panel");
+      const taskpainel = document.querySelector(".tasks_panel");
       variaveis[clickKey] = variaveis[clickKey] || 0;
-      var taskcontainer = document.querySelector(".tasks-container");
-      var sidebar = document.querySelector(".sidebar");
-      var sidebarBottons = document.querySelectorAll(".sidebar-bottons");
+      const taskcontainer = document.querySelector(".tasks-container");
+      const sidebar = document.querySelector(".sidebar");
+      const sidebarBottons = document.querySelectorAll(".sidebar-bottons");
 
       if (noclick || emojiClicked || checkboxClicked) {
         emojiClicked = false;
@@ -617,18 +637,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Task
 
-    var Alltasks = document.querySelectorAll(".tasks");
+    const Alltasks = document.querySelectorAll(".tasks");
     Alltasks.forEach(function (task) {
       task.addEventListener("click", function (event) {
         selectedTaskId = task.id;
 
-        var AllDescriptionInput =
+        const AllDescriptionInput =
           document.querySelectorAll(".DescriptionField");
 
-        var AllTitleInput = document.querySelectorAll(".TitleField");
+        const AllTitleInput = document.querySelectorAll(".TitleField");
 
-        var taskId = task.id;
-        var taskIdNumber = Number(taskId.replace(/^\D+/g, ""));
+        let taskId = task.id;
+        let taskIdNumber = Number(taskId.replace(/^\D+/g, ""));
 
         console.log(taskId);
 
@@ -653,22 +673,22 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log(`${key}: ${value}`);
         });
 
-        var titlepanel = document.querySelector(".TitlePanel");
+        const titlepanel = document.querySelector(".TitlePanel");
         titlepanel.innerHTML = "<h2>Task" + "</h2>";
 
-        var titleEditor = document.querySelector(".TitleField");
+        const titleEditor = document.querySelector(".TitleField");
         titleEditor.setAttribute("id", "TitleEditor" + taskIdNumber);
 
-        var InputDescripitions = document.querySelector(".DescriptionField");
+        const InputDescripitions = document.querySelector(".DescriptionField");
         InputDescripitions.setAttribute(
           "id",
           "DescriptionEditor" + taskIdNumber
         );
 
-        for (var j = 0; j < AllDescriptionInput.length; j++) {
-          var DescriptionInput = AllDescriptionInput[j];
-          var DescriptionId = DescriptionInput.id;
-          var DescriptionIdNumber = 0;
+        for (let j = 0; j < AllDescriptionInput.length; j++) {
+          let DescriptionInput = AllDescriptionInput[j];
+          let DescriptionId = DescriptionInput.id;
+          let DescriptionIdNumber = 0;
 
           if (DescriptionId) {
             DescriptionIdNumber = Number(DescriptionId.replace(/^\D+/g, ""));
@@ -679,10 +699,10 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
 
-        for (var i = 0; i < AllTitleInput.length; i++) {
-          var titleInput = AllTitleInput[i];
-          var titleId = titleInput.id;
-          var titleIdNumber = 0;
+        for (let i = 0; i < AllTitleInput.length; i++) {
+          let titleInput = AllTitleInput[i];
+          let titleId = titleInput.id;
+          let titleIdNumber = 0;
 
           if (titleId) {
             titleIdNumber = Number(titleId.replace(/^\D+/g, ""));
@@ -693,24 +713,24 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
 
-        var submitbtn = document.querySelector("#submitbotton");
+        const submitbtn = document.querySelector("#submitbotton");
         submitbtn.addEventListener("click", function () {
-          for (var j = 0; j < AllTitleInput.length; j++) {
-            var InputTitles = AllTitleInput[j];
-            var TitleInputId = InputTitles.id;
-            var TitleInputIdNumber = 0;
+          for (let j = 0; j < AllTitleInput.length; j++) {
+            let InputTitles = AllTitleInput[j];
+            let TitleInputId = InputTitles.id;
+            let TitleInputIdNumber = 0;
 
             if (TitleInputId) {
               TitleInputIdNumber = Number(TitleInputId.replace(/^\D+/g, ""));
             }
 
             if (TitleInputId == "TitleEditor" + taskIdNumber) {
-              var TextTitle = InputTitles.value;
-              var Title_tasks = document.querySelectorAll(
+              let TextTitle = InputTitles.value;
+              const Title_tasks = document.querySelectorAll(
                 ".title_task-container"
               );
-              for (var k = 0; k < Title_tasks.length; k++) {
-                var NewTitles = Title_tasks[k];
+              for (let k = 0; k < Title_tasks.length; k++) {
+                let NewTitles = Title_tasks[k];
                 if (NewTitles.id == "title_task" + TitleInputIdNumber) {
                   if (TextTitle === "") {
                     return;
@@ -723,10 +743,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           }
 
-          for (var j = 0; j < AllDescriptionInput.length; j++) {
-            var DescriptionInput = AllDescriptionInput[j];
-            var DescriptionId = DescriptionInput.id;
-            var DescriptionIdNumber = 0;
+          for (let j = 0; j < AllDescriptionInput.length; j++) {
+            let DescriptionInput = AllDescriptionInput[j];
+            let DescriptionId = DescriptionInput.id;
+            let DescriptionIdNumber = 0;
 
             if (DescriptionId) {
               DescriptionIdNumber = Number(DescriptionId.replace(/^\D+/g, ""));
@@ -743,10 +763,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           }
 
-          for (var i = 0; i < AllTitleInput.length; i++) {
-            var titleInput = AllTitleInput[i];
-            var titleId = titleInput.id;
-            var titleIdNumber = 0;
+          for (let i = 0; i < AllTitleInput.length; i++) {
+            let titleInput = AllTitleInput[i];
+            let titleId = titleInput.id;
+            let titleIdNumber = 0;
 
             if (titleId) {
               titleIdNumber = Number(titleId.replace(/^\D+/g, ""));
@@ -759,7 +779,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           }
 
-          var newCheckboxes = document.querySelectorAll("#checkbox" + indice);
+          const newCheckboxes = document.querySelectorAll("#checkbox" + indice);
           newCheckboxes.forEach(function (newCheckbox) {
             newCheckbox.addEventListener("change", updateCheckedCount);
           });
@@ -774,7 +794,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (noclick) {
       return;
     } else {
-      var quantity_text = document.querySelector("#quantity_text");
+      const quantity_text = document.querySelector("#quantity_text");
 
       quantity++;
       localStorage.setItem("quantityStorage", quantity);

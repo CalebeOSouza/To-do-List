@@ -65,6 +65,8 @@ header {
     place-items: center;
     top: 0;
     z-index: 999;
+    filter: drop-shadow(1px 1px 3px black);
+
 
 }
 
@@ -323,27 +325,24 @@ li {
     justify-content: center;
     margin-bottom: 10px;
     border: none;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 140%;
-    transition: .8s;
-}
-
-.itens-container:not(#search_container):hover {
-
-    background-color: #3A3B3D;
-    transition: .3s;
+padding-left: .5px;
+    width: 100%;
     cursor: pointer;
 }
 
-.itens-container:not(#search_container):active {
+.itens-container:hover {
 
-    background-color: #3A3B3D;
-    transform: scale(0.9);
-    transition: .4s;
-    cursor: pointer;
+    background-color: rgba(63, 63, 63, 0.5);
+    border-left: 4px solid white;
+
 }
 
+.itens-container:active {
+
+    background-color: rgba(63, 63, 63, 1);
+   
+
+}
 
 .container {
     width: 100%;
@@ -467,9 +466,15 @@ li {
     width: 48px;
     height: 48px;
     border-radius: 10px;
-    transition: .6s;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.cores:hover {
+
+    cursor: pointer;
+    transform: scale(1.05);
+    
 }
 
 
@@ -515,19 +520,7 @@ li {
     background: linear-gradient(to right, #c1a4e3 50%, #ddcaf1 50%);
 }
 
-.cores:hover {
 
-    cursor: pointer;
-    transform: scale(1.05);
-    transition: .6s;
-}
-
-.cores:active {
-
-    cursor: pointer;
-    transform: scale(0.9);
-    transition: .6s;
-}
 
 .colorTitles {
 
@@ -924,6 +917,8 @@ body::-webkit-scrollbar-thumb {
     transition: .8s;
 
 }
+
+
 
 @keyframes deleting {
 
